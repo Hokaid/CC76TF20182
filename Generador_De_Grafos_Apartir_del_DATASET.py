@@ -131,23 +131,29 @@ def GenerarGrafoCompletoCP(filename, numero_nodos, newfilename): #Esta función 
 
 #!IMPORTANTE!: Descomente el siguiente codigo si desea probar como se genera el grafo de 25 capitales regionales a partir del Dataset, tomara unos 2 minutos
 """
-GenerarGrafo_conCriterio("Cordenadas_de_CentrosPoblados_Obtenido_del_Dataset.txt","Capital_de_CentrosPoblados_Obtenido_del_Dataset.txt", 25, 145225, 1, "Grafo_25_Capitales_Regionales.txt")
+GenerarGrafo_conCriterio("Cordenadas_de_CentrosPoblados_Obtenido_del_Dataset.txt","AtributoCapital_de_CentrosPoblados_Obtenido_del_Dataset.txt", 25, 145225, 1, "Grafo_25_Capitales_Regionales.txt")
 """
 
 #!IMPORTANTE!: Descomente el siguiente codigo si desea probar como se genera el grafo de 171 capitales provinciales a partir del Dataset, tomara unos 5 minutos
 """
-GenerarGrafo_conCriterio("Cordenadas_de_CentrosPoblados_Obtenido_del_Dataset.txt","Capital_de_CentrosPoblados_Obtenido_del_Dataset.txt", 171, 145225, 2, "Grafo_171_Capitales_Provinciales.txt")
+GenerarGrafo_conCriterio("Cordenadas_de_CentrosPoblados_Obtenido_del_Dataset.txt","AtributoCapital_de_CentrosPoblados_Obtenido_del_Dataset.txt", 171, 145225, 2, "Grafo_171_Capitales_Provinciales.txt")
 """
 
 #!IMPORTANTE!: Descomente el siguiente codigo si desea probar como se genera el grafo de 1678 capitales distritales a partir del Dataset, tomara unos 10 minutos
 """
-GenerarGrafo_conCriterio("Cordenadas_de_CentrosPoblados_Obtenido_del_Dataset.txt","Capital_de_CentrosPoblados_Obtenido_del_Dataset.txt",1678, 145225, 3, "Grafo_1678_Capitales_Distritales.txt")
+GenerarGrafo_conCriterio("Cordenadas_de_CentrosPoblados_Obtenido_del_Dataset.txt","AtributoCapital_de_CentrosPoblados_Obtenido_del_Dataset.txt",1678, 145225, 3, "Grafo_1678_Capitales_Distritales.txt")
 """
 
 #!IMPORTANTE!: Descomente el siguiente codigo si desea probar como se genera el grafo completo con los 145225 centros poblados del Dataset, tomara unos 20 minutos
 """
 GenerarGrafoCompletoCP("Cordenadas_de_CentrosPoblados_Obtenido_del_Dataset.txt",145225,"Grafo_145225_CentrosPoblados.txt")
 """
+
+#!IMPORTANTE!: Descomente el siguiente codigo si desea probar como se genera el grafo de 75512 centros educativos, tomara unos 13 minutos
+"""
+GenerarGrafoCompletoCP("Cordenadas_de_CentrosEducativos_Obtenido_del_Dataset.txt",75512,"Grafo_75512_CentrosEducativos.txt")
+"""
+
 
 
 
