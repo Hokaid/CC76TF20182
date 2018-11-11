@@ -3,7 +3,7 @@ import heapq as hq
 from LectorDeGrafo import *
 
 def MakeWay(path, t, contador, camino, n):
-    if t != -1 and contador < n:
+    if t != -1 and contador <= n:
         MakeWay(path, path[t], contador + 1, camino, n)
         camino.append(t)
 
@@ -22,7 +22,6 @@ def dikjstra_modificado(G, s, numero_iteraciones):
         g, u = hq.heappop(q)
         if not visited[u]:
             visited[u] = True
-            if (prof[u] > n-1): break
             for wv in G[u]:
                 numero_iteraciones[0] = numero_iteraciones[0] + 1
                 if wv != None:
@@ -72,14 +71,13 @@ def dikjstra_modificado(G, s, numero_iteraciones):
                         pathi[v] = u
                         hq.heappush(queue, (f, v))
                         
-    return path, pathi, dist, weight, ciudad_final
+    return path, pathi, ciudad_final
 
 def Ejecutar_Alg_Basado_Dikjstra(G,s,ciudad,peso,solup,iters):
     numero_iteraciones = [0]
-    path, pathi, dist, weight, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
+    path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
     camino = []
     if (pathi == [-1]*len(G)):
-        camino.append(s)
         MakeWay(path, s, 0, camino, len(G))
     else:
         MakeWay(path, path[ciudad_final], 0, camino, len(G))
