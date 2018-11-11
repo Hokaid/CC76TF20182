@@ -20,7 +20,7 @@ def LeerCapital(filename, numero_nodos):
             if (is_float(line)):
                 Capitales[i] = int(line)
                 i = i + 1
-                print("estoy en capita: " + str(i))
+                print("leerCapital: " + str(i))
     return Capitales
 
 def LeerPosiciones_Criterio(filename, numero_nodos, Capitales, Criterio):
@@ -37,7 +37,7 @@ def LeerPosiciones_Criterio(filename, numero_nodos, Capitales, Criterio):
                     pr = float(j)
                     Posiciones[i] = pr
                     i = i + 1
-                    print("estoy en posiciones: " + str(i))
+                    print("Posis: " + str(i))
                 r = r + 1
                 if (r == 2):
                     k = k + 1
@@ -54,7 +54,6 @@ def LeerPosiciones(filename, numero_nodos):
                 pr = float(j)
                 Posiciones[i] = pr
                 i = i + 1
-        print(i)
     return Posiciones
 
                             
@@ -83,7 +82,6 @@ def CrearGrafo(Posiciones, numero_nodos):
         if (A[e] != (0,0)):
             T.append(A[e])
     G[i] = T
-    print("Estoy en crear grafo: " + str(i))
   return G
 
 def ISin(Arr, b):
@@ -103,7 +101,6 @@ def Convertir_A_Grafo_No_Dirigido(G):
         if ((w,v) != (0,0)) and ISin(G[v],(w,u)):
             G[v].append((w,u))
     u += 1
-    print("Estoy en Convertir a grafo no dirigido: " + str(u))
   return G
 
 def EscribirGrafo(G, newfilename):

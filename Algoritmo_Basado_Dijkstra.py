@@ -79,6 +79,7 @@ def Ejecutar_Alg_Basado_Dikjstra(G,s,ciudad,peso,solup,iters):
     path, pathi, dist, weight, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
     camino = []
     if (pathi == [-1]*len(G)):
+        camino.append(s)
         MakeWay(path, s, 0, camino, len(G))
     else:
         MakeWay(path, path[ciudad_final], 0, camino, len(G))
@@ -106,7 +107,7 @@ def Ejecutar_Alg_Basado_Dikjstra(G,s,ciudad,peso,solup,iters):
     distancia_acumulada = 0
     anterior = s
     counter = 0
-    print(str(s) + "(0)",end="->")
+    print(str(s)+"(0)",end="->")
     for i in camino:
         Ya_encontrado = False
         for j in lugares_visitados:
@@ -132,6 +133,7 @@ def Ejecutar_Alg_Basado_Dikjstra(G,s,ciudad,peso,solup,iters):
     peso.set(str(distancia_acumulada))
     iters.set(str(numero_iteraciones[0]))
     print()
+    return camino
 
 
 
