@@ -73,7 +73,7 @@ def dikjstra_modificado(G, s, numero_iteraciones):
                         
     return path, pathi, ciudad_final
 
-def Ejecutar_Alg_Basado_Dikjstra(G,s,ciudad,peso,solup,iters):
+def Ejecutar_Alg_Basado_Dikjstra_Mostrar_Resultados(G,s,ciudad,peso,solup,iters):
     numero_iteraciones = [0]
     path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
     camino = []
