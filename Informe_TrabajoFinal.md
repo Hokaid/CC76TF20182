@@ -196,6 +196,10 @@ path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
                     break
                 cou = cou + 1
  ```
+ 
+ ## Marco Teórico del algoritmo basado en Greedy:
+ Hacer lo Tuyo Javier
+ 
 # Analisis de Complejidada Algoritmica
 
 ## Análisis de la Complejidad del algoritmo basado en Dijkstra
@@ -337,7 +341,13 @@ Por lo tanto, la complejidad para este caso, en notación Big O, será idéntica
 
                                  Notación Big O: O((n+|a|)*(Log(n+|a|)+Log(n)))
 
-La representación dada anteriormente representa la complejidad, en notación Big O, del algoritmo propuesto basado en Dijkstra. 
+La representación dada anteriormente representa la complejidad, en notación Big O, del algoritmo propuesto basado en Dijkstra.
+
+## Análisis de la Complejidad del algoritmo basado en Greedy:
+ Hacer lo Tuyo Javier, also
+ 
+# Conclusiones
+Hacer lo tuyo javier, puedes copiar lo del trabajo pasado, pero procura cambiar algunas cosas, mejorarlo y hacer lo mas acorde al TF
 
 # Bibliografía 
 
