@@ -1,23 +1,34 @@
-Introducción
+# Introducción
 El problema que se plantea resolver en este proyecto es El problema del vendedor viajero. Este problema se puede definir de la siguiente manera: “Dado un conjunto finito de ciudades, y costos de viaje entre todos los pares de ciudades, encontrar la forma más barata de visitar todas las ciudades exactamente una vez, y volver al punto de partida” (Espinoza, 2006). Este es un problema NP-Hard (tiempo polinomial no determinista-difícil) dentro en la optimización combinatoria, muy importante en la investigación de operaciones y en la ciencia de la computación. La motivación para el desarrollo de este proyecto radica en poner en práctica el uso de los algoritmos y estrategias de solución vistas en clase tales como Dijkstra, Conjuntos disjuntos, programación dinámica, greedy, entre otros. Además, también se cuenta con la motivación de determinar una solución eficiente para un problema difícil e importante, cuya solución no solo podría traer muchos beneficios al mundo de la informática, sino también a la sociedad en general. Esto es así, ya que una solución eficiente para este problema podría tener aplicación en muchas situaciones de la vida real, por ejemplo, la ruta más óptima para realizar un viaje alrededor del mundo. El objetivo del presente informe es la propuesta de 2 algoritmos como solución para el problema mencionado. Dichos algoritmos serán explicados y analizados posteriormente. 
 
-Objetivos del Proyecto
+# Objetivos del Proyecto
+
 A. Generar soluciones que estén acorde con los datos respectivos del problema, a partir de un análisis adecuado de los mismos, los cuales son representados bajo diversas formas tales como tablas y gráficos.
+
 B. Desarrollar soluciones para el problema dado basadas en la utilización de números y términos matemáticos.
+
 C. Utilizar técnicas y herramientas modernas en la elaboración de la solución del problema planteado.
+
 D. Aplicar las técnicas y algoritmos de solución vistas a lo largo del curso en el desarrollo de las soluciones para el problema dado.
+
 E. Elaborar un marco teórico explicando detalladamente cada una de las estrategias usadas para dar solución al problema planteado.
+
 F. Determinar la complejidad algorítmica, haciendo uso de la notación Big O, de cada uno de los algoritmos desarrollados.
+
 G. Encontrar soluciones óptimas para el problema planteado (Problema del vendedor viajero).
+
 H. Generar una adecuada visualización de resultados de acuerdo a la solución encontrada, mostrando datos relevantes de la misma.
 
+# Marco Teórico:
 
-Marco Teórico:
 Antes de continuar, se debe resaltar que la representación de los datos correspondientes al problema del vendedor viajero se realiza a través de un grafo no dirigido. En el cual, los nodos son los lugares por visitar, y las aristas con sus respectivos pesos son las conexiones entre dichos lugares con sus respectivas distancias asociadas. En ambos algoritmos propuestos se utiliza esta representación para dar solución al problema. Ahora bien, se va a desarrollar el marco teórico correspondiente a cada uno de los algoritmos planteados:
 
-Marco Teórico del algoritmo basado en Dijkstra:
+## Marco Teórico del algoritmo basado en Dijkstra:
+
 En primer lugar, se debe definir adecuadamente de qué se trata el algoritmo de Dijkstra. Según Arias (2012), “el algoritmo de dijkstra determina la ruta más corta desde un nodo origen hacia los demás nodos para ello es requerido como entrada un grafo cuyas aristas posean pesos”. Ahora bien, también se debe describir apropiadamente cómo funciona el algoritmo de Dijkstra. A continuación, procederá a brindar una descripción del procedimiento que sigue dicho algoritmo:
-Primero marcamos todos los vértices como no utilizados. El algoritmo parte de un vértice origen que será ingresado, a partir de ese vértice evaluaremos sus adyacentes, como dijkstra usa una técnica greedy – La técnica greedy utiliza el principio de que para que un camino sea óptimo, todos los caminos que contiene también deben ser óptimos- entre todos los vértices adyacentes, buscamos el que esté más cerca de nuestro punto origen, lo tomamos como punto intermedio y vemos si podemos llegar más rápido a través de este vértice a los demás. Después escogemos al siguiente más cercano (con las distancias ya actualizadas) y repetimos el proceso. Esto lo hacemos hasta que el vértice no utilizado más cercano sea nuestro destino. Al proceso de actualizar las distancias tomando como punto intermedio al nuevo vértice se le conoce como relajación. (Arias, 2012) 
+
+Primero marcamos todos los vértices como no utilizados. El algoritmo parte de un vértice origen que será ingresado, a partir de    ese vértice evaluaremos sus adyacentes, como dijkstra usa una técnica greedy – La técnica greedy utiliza el principio de que para que un camino sea óptimo, todos los caminos que contiene también deben ser óptimos- entre todos los vértices adyacentes, buscamos el que esté más cerca de nuestro punto origen, lo tomamos como punto intermedio y vemos si podemos llegar más rápido a través de este vértice a los demás. Después escogemos al siguiente más cercano (con las distancias ya actualizadas) y repetimos el proceso. Esto lo hacemos hasta que el vértice no utilizado más cercano sea nuestro destino. Al proceso de actualizar las distancias tomando como punto intermedio al nuevo vértice se le conoce como relajación. (Arias, 2012) 
+
 En la cita anterior, se ha dado una descripción del procedimiento que sigue el algoritmo de Dijkstra para determinar el camino más corto de un nodo a otro. Asimismo, es importante tener en cuenta que si se utiliza, en la implementación de este algoritmo, una cola de prioridad, la complejidad del mismo se reduce en gran medida (Arias, 2012). En ese sentido, según Arias (2012), es importante mencionar que en dicha cola, los nodos que ingresen adquirirán su respectiva prioridad de acuerdo a lo cercanos que estén al nodo de partida, siendo más prioritarios si están más cerca. A continuación, siguiendo lo dicho por Arias (2012), el pseudocódigo correspondiente al algoritmo de Dijkstra descrito anteriormente está dado por lo siguiente:
 1  método Dijkstra(Grafo,origen):
 2      creamos una cola de prioridad Q
