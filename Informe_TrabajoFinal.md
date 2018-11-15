@@ -283,7 +283,7 @@ Ahora bien, si realizamos la suma respectiva de los tiempos determinados anterio
               
 Llegados a este punto, se debe reconocer que la expresión “n*|número de nodos adyacentes a u|” coincide con la suma entre la cantidad de nodos y el número de aristas. A continuación se demostrara lo propuesto anteriormente con un ejemplo:
 
-![alt text][https://github.com/Hokaid/CC76TF20182/blob/master/grafo.png]
+![alt text](https://github.com/Hokaid/CC76TF20182/blob/master/grafo.png "grafo")
 
 Supongamos que se tiene el grafo no dirigido anterior, son 4 vértices, por lo que la expresión sería “4*|número de nodos adyacentes a u|”. Son 4 aristas, entonces, después del análisis, se debe obtener que son 8 iteraciones en total para la expresión “4*|número de nodos adyacentes a u|” dado este grafo. 
 
