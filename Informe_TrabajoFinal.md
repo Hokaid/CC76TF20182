@@ -287,40 +287,57 @@ Llegados a este punto, se debe reconocer que la expresión “n*|número de nodo
 
 Supongamos que se tiene el grafo no dirigido anterior, son 4 vértices, por lo que la expresión sería “4*|número de nodos adyacentes a u|”. Son 4 aristas, entonces, después del análisis, se debe obtener que son 8 iteraciones en total para la expresión “4*|número de nodos adyacentes a u|” dado este grafo. 
 
-1 iteración (u=1)………... |número de nodos adyacentes a u| = 2
-2 iteración (u=2)………... |número de nodos adyacentes a u| = 3
-3 iteración (u=3)………... |número de nodos adyacentes a u| = 2
-4 iteración (u=4)………... |número de nodos adyacentes a u| = 1
-                                                                                        Total:   8
+                            1 iteración (u=1)………... |número de nodos adyacentes a u| = 2
+                            2 iteración (u=2)………... |número de nodos adyacentes a u| = 3
+                            3 iteración (u=3)………... |número de nodos adyacentes a u| = 2
+                            4 iteración (u=4)………... |número de nodos adyacentes a u| = 1
+                                                                              Total:   8
+
 Como se puede observar en el ejemplo anterior, la fórmula propuesta si es generalizable. No obstante, no se cumple exactamente para todos los casos, pero se aproxima bastante al resultado que debería dar. Por lo tanto, para realizar este análisis, se considerara la formula propuesta. En ese sentido, si remplazamos la expresión “n*|número de nodos adyacentes a u|” por “(n+|a|)”, se obtendría lo siguiente en la expresión matemática correspondiente al análisis de la complejidad de este algoritmo:
-(n+|a|)*(Log(|profus|)+Log(|q|))
-n: número de nodos
-|a|: cantidad de aristas del grafo
-Se debe tener en cuenta que expresiones como |q| y |profus| son de longitud variable, ya que representan la longitud de las colas de prioridad “q” y “profus” respectivamente en cada momento. Dichas longitudes variaran constantemente, por lo que, como se está realizando el análisis del peor caso, se considerara la máxima longitud que puedan llegar a obtener dichas colas de prioridad. En el caso de q, la máxima longitud que puede llegar a adquirir coincide con el número de nodos. Se debe tener en cuenta que cada iteración de la repetitiva “while” del código anterior, se libera un elemento de la cola, mientras que cuando se analizan los nodos adyacentes a un nodo, solo se agregan nodos a dicha cola. Por lo tanto, se pueden dar el caso de que un nodo sea adyacente a todos los demás nodos, por lo que se podrían agregar todos ellos a la cola de prioridad “q”. De esta manera, se justifica considerar que la máxima longitud de dicha cola coincida aproximadamente con el número de nodos. Si remplazamos lo dicho anteriormente en la expresión, se obtiene: 
-(n+|a|)*(Log(|profus|)+Log(n))
-n: número de nodos
-|a|: cantidad de aristas del grafo
+ 
+                                                 (n+|a|)*(Log(|profus|)+Log(|q|))
+                                                   
+                                                 n: número de nodos
+                                                 |a|: cantidad de aristas del grafo
+                                                 
+Se debe tener en cuenta que expresiones como |q| y |profus| son de longitud variable, ya que representan la longitud de las colas de prioridad “q” y “profus” respectivamente en cada momento. Dichas longitudes variaran constantemente, por lo que, como se está realizando el análisis del peor caso, se considerara la máxima longitud que puedan llegar a obtener dichas colas de prioridad. En el caso de q, la máxima longitud que puede llegar a adquirir coincide con el número de nodos. Se debe tener en cuenta que cada iteración de la repetitiva “while” del código anterior, se libera un elemento de la cola, mientras que cuando se analizan los nodos adyacentes a un nodo, solo se agregan nodos a dicha cola. Por lo tanto, se pueden dar el caso de que un nodo sea adyacente a todos los demás nodos, por lo que se podrían agregar todos ellos a la cola de prioridad “q”. De esta manera, se justifica considerar que la máxima longitud de dicha cola coincida aproximadamente con el número de nodos. Si remplazamos lo dicho anteriormente en la expresión, se obtiene:
+
+                                                (n+|a|)*(Log(|profus|)+Log(n))
+                                                
+                                                n: número de nodos
+                                                |a|: cantidad de aristas del grafo
+
 Algo similar sucede con la cola |profus|, solo que para este caso, en ninguna parte del código mostrado, se expulsan nodos de dicha cola. En esta cola, como ya se explica en la parte teórica, se almacenan los nodos con sus respectivas profundidades en cada momento del recorrido. Asimismo, sirve para determinar el nodo más profundo recorrido, lo cual será útil en la segunda parte del algoritmo. Ahora bien, siguiendo la expresión matemática dada anteriormente, se puede observar que la operación de agregar nodos a la cola de prioridad se lleva a cabo unas “(n+|a|)” veces. Por ello, la longitud máxima que puede alcanzar dicha cola de prioridad es coincide con el valor de dicha expresión: “(n+|a|)”. Considerando lo mencionado en la expresión, se reconoce lo siguiente:
-(n+|a|)*(Log(n+|a|)+Log(n))
-n: número de nodos
-|a|: cantidad de aristas del grafo
+
+                                                (n+|a|)*(Log(n+|a|)+Log(n))
+                                                
+                                                n: número de nodos
+                                                |a|: cantidad de aristas del grafo
+                                                
 Continuando con el asunto, para complementar lo propuesto hasta ahora, se procederá a analizar la segunda parte del algoritmo. En esta segunda parte, a partir de la cola de prioridad “profus”, se determina el nodo más profundo recorrido la primera parte. Luego de ello, se verifica si existe alguna arista que conecte directamente dicho nodo seleccionado con el nodo de origen. De existir dicha arista, como se explicó en la parte teórica, se realiza la conexión respectiva y se retorna el camino (solución) encontrado. Para este primer caso, se debe tener en cuenta que el tiempo de ejecución para encontrar dicha arista y realizar la conexión es despreciable. Por esta razón, para este caso, la complejidad del algoritmo en notación Big O coincidiría con la última expresión matemática dada:
-Notación Big O: O((n+|a|)*(Log(n+|a|)+Log(n)))
-n: número de nodos
-|a|: cantidad de aristas del grafo
-No obstante, es pertinente analizar el peor caso posible. Esto se da cuando no existe la arista que conecte directamente el nodo más profundo recorrido con el nodo de origen. Para este segundo caso, se intentara buscar el camino más corto para volver al nodo de origen usando el algoritmo clásico de Dijkstra, sin ninguna modificación. En ese sentido, se sumara a la expresión matemática determina la complejidad del algoritmo de Dijkstra. Realizando ello, se obtiene:
-((n+|a|)*(Log(n+|a|)+Log(n)))+ ((n+|a|)*Log(n))
-2*((n+|a|)*Log(n))+ ((n+|a|)* Log(n+|a|))
--	Simplificando los valores constantes, de acuerdo a la notación Big O:
-((n+|a|)*(Log(n+|a|)+Log(n)))
+
+                                           Notación Big O: O((n+|a|)*(Log(n+|a|)+Log(n)))
+                                           
+                                           n: número de nodos
+                                           |a|: cantidad de aristas del grafo
+                                           
+No obstante, es pertinente analizar el peor caso posible. Esto se da cuando no existe la arista que conecte directamente el nodo más profundo recorrido con el nodo de origen. Para este segundo caso, se intentara buscar el camino más corto para volver al nodo de origen usando el algoritmo clásico de Dijkstra, sin ninguna modificación. En ese sentido, se sumara a la expresión matemática determina la complejidad del algoritmo de Dijkstra:
+
+                           ((n+|a|)*(Log(n+|a|)+Log(n)))+ ((n+|a|)*Log(n))
+                           
+            Realizando la suma respectiva, se obtiene:
+                           
+                           2*((n+|a|)*Log(n))+ ((n+|a|)* Log(n+|a|))
+                           
+            Simplificando los valores constantes, de acuerdo a la notación Big O:
+            
+                           ((n+|a|)*(Log(n+|a|)+Log(n)))
+                           
 Por lo tanto, la complejidad para este caso, en notación Big O, será idéntica a como se determinó para el primer caso:
-Notación Big O: O((n+|a|)*(Log(n+|a|)+Log(n)))
+
+                                 Notación Big O: O((n+|a|)*(Log(n+|a|)+Log(n)))
+
 La representación dada anteriormente representa la complejidad, en notación Big O, del algoritmo propuesto basado en Dijkstra. 
-
-
-
-
-
 
 
 Fuente
