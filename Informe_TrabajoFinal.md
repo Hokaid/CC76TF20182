@@ -339,9 +339,10 @@ Por lo tanto, la complejidad para este caso, en notación Big O, será idéntica
 
 La representación dada anteriormente representa la complejidad, en notación Big O, del algoritmo propuesto basado en Dijkstra. 
 
+# Bibliografía 
 
-Fuente
-http://www.dii.uchile.cl/~daespino/PApers/TSP_and_IP_chile_050820.pdf 
-https://jariasf.wordpress.com/2012/03/19/camino-mas-corto-algoritmo-de-dijkstra/ 
+- Espinoza, D. (24 de julio de 2016). EL Problema del Vendedor Viajero (TSP) y
+Programación Entera (IP). Universidad de Chile. Recuperado de http://www.dii.uchile.cl/~daespino/PApers/TSP_and_IP_chile_050820.pdf 
+https://jariasf.wordpress.com/2012/03/19/camino-mas-corto-algoritmo-de-dijkstra/ [Consulta: 15 de Noviembre]
 
 
