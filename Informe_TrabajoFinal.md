@@ -341,8 +341,20 @@ La representación dada anteriormente representa la complejidad, en notación Bi
 
 # Bibliografía 
 
+- Algortimo de Dijkstra. (s.f). Recuperado de http://oer2go.org/mods/es-wikipedia-static/content/a/algoritmo_de_dijkstra.html [Consulta: 15 de Noviembre de 2018]
+
+- Arias, J. G. (19 de marzo de 2012). Camino más corto: Algoritmo de Dijkstra. Recuperado de https://jariasf.wordpress.com/2012/03/19/camino-mas-corto-algoritmo-de-dijkstra/ [Consulta: 15 de Noviembre de 2018]
+
+- Dijkstra’s Algorithm for Adjacency List Representation. (s.f). Recuperado de https://www.geeksforgeeks.org/dijkstras-algorithm-for-adjacency-list-representation-greedy-algo-8/ [Consulta: 15 de Noviembre de 2018]
+
 - Espinoza, D. (24 de julio de 2016). EL Problema del Vendedor Viajero (TSP) y
-Programación Entera (IP). Universidad de Chile. Recuperado de http://www.dii.uchile.cl/~daespino/PApers/TSP_and_IP_chile_050820.pdf 
-https://jariasf.wordpress.com/2012/03/19/camino-mas-corto-algoritmo-de-dijkstra/ [Consulta: 15 de Noviembre]
+Programación Entera (IP) [Presentación de Power Point]. Universidad de Chile. Recuperado de http://www.dii.uchile.cl/~daespino/PApers/TSP_and_IP_chile_050820.pdf 
+https://jariasf.wordpress.com/2012/03/19/camino-mas-corto-algoritmo-de-dijkstra/ [Consulta: 15 de Noviembre de 2018]
+
+
+
+
+
+
 
 
