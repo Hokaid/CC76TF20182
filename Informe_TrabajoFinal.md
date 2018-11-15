@@ -51,8 +51,14 @@ En la cita anterior, se ha dado una descripción del procedimiento que sigue el 
 ```
 
 Ahora bien, se pasara a explicar en qué consiste el algoritmo planteado, el cual se basa en Dijkstra. Se trata de un Dijkstra modificado. Dicha modificación radica únicamente en agregarle un arreglo adicional al algoritmo. En dicho arreglo, se almacenan las profundidades de cada nodo asociado. Con profundidad se hace referencia a la cantidad de nodos que deben de ser recorridos desde el nodo origen para llegar al nodo en cuestión. Asimismo, también se está haciendo uso de otra cola de prioridad, donde se almacenan los nodos con sus respectivas profundidades, siendo el de mayor profundidad, el más prioritario. Dicha cola adquiere utilidad cuando se debe de seleccionar el nodo más profundo recorrido. Llegados a este punto, se procederá a explicar el algoritmo propuesto paso a paso para un entendimiento adecuado del mismo:
-Pasó a Paso del algoritmo Propuesto
-Paso 1: Inicializar las profundidades de todos los nodos con el valor de 0 en el arreglo “prof” respectivo. Además, análogamente a como se realiza en el algoritmo de Dijkstra, inicializar los arreglos de distancias y paternidad con los valores en infinito y -1 (el -1 significa que no tiene nodo padre) respectivamente. No olvidar el arreglo de visitados que también debe estar inicializado correspondientemente con todos sus valores en “False”. Luego de esto, agregar el nodo de origen a la cola de prioridad y actualizar la información del mismo en los arreglos mencionados anteriormente. A continuación, se muestra la parte del código correspondiente a lo mencionado:
+
+### Pasó a Paso del algoritmo Propuesto
+
+#### Paso 1: 
+
+Inicializar las profundidades de todos los nodos con el valor de 0 en el arreglo “prof” respectivo. Además, análogamente a como se realiza en el algoritmo de Dijkstra, inicializar los arreglos de distancias y paternidad con los valores en infinito y -1 (el -1 significa que no tiene nodo padre) respectivamente. No olvidar el arreglo de visitados que también debe estar inicializado correspondientemente con todos sus valores en “False”. Luego de esto, agregar el nodo de origen a la cola de prioridad y actualizar la información del mismo en los arreglos mencionados anteriormente. A continuación, se muestra la parte del código correspondiente a lo mencionado:
+
+```python
     n = len(G)
     dist = [math.inf]*n
     path = [-1]*n
@@ -62,13 +68,21 @@ Paso 1: Inicializar las profundidades de todos los nodos con el valor de 0 en el
     profus = []
     hq.heappush(q, (0, s))
     dist[s] = 0
+ ```
+#### Paso 2: 
 
-Paso 2: Sacar de la cola de prioridad el nodo más cercano al nodo de origen. Tener en cuenta que en un primer caso se seleccionara el nodo de origen, ya que este será el único en la cola. Luego de sacar dicho nodo, verificar si esta visitado. Si esta visitado, se procederá con el siguiente nodo en la cola. De no estar visitado, se pasara a realizar el análisis de dicho nodo. Hasta ahora el algoritmo es casi idéntico a Dijkstra, no obstante, la variación propuesta se presentara en el siguiente paso. En ese sentido, el código correspondiente a este paso es el siguiente:
+Sacar de la cola de prioridad el nodo más cercano al nodo de origen. Tener en cuenta que en un primer caso se seleccionara el nodo de origen, ya que este será el único en la cola. Luego de sacar dicho nodo, verificar si esta visitado. Si esta visitado, se procederá con el siguiente nodo en la cola. De no estar visitado, se pasara a realizar el análisis de dicho nodo. Hasta ahora el algoritmo es casi idéntico a Dijkstra, no obstante, la variación propuesta se presentara en el siguiente paso. En ese sentido, el código correspondiente a este paso es el siguiente:
+
+```python
 while len(q) > 0:
         g, u = hq.heappop(q)
         if not visited[u]:
             visited[u] = True
-Paso 3: En este paso, se procede con el análisis del nodo seleccionado. Para ello, se continúa con la evaluación de todos los nodos adyacentes al mismo en el grafo dado. Si el nodo adyacente ya ha sido visitado, se pasa a analizar el siguiente nodo adyacente. De no haber sido visitado, se pregunta si la profundidad de dicho nodo es menor o igual que la profundidad, aumentada en una unidad, del nodo seleccionado, es decir, la profundidad del nodo que se acaba de sacar de la cola más uno. A continuación, se explicara cual es el proceso que se debe seguir para cada posible caso a presentarse dada la condición anterior:
+```
+#### Paso 3: 
+
+En este paso, se procede con el análisis del nodo seleccionado. Para ello, se continúa con la evaluación de todos los nodos adyacentes al mismo en el grafo dado. Si el nodo adyacente ya ha sido visitado, se pasa a analizar el siguiente nodo adyacente. De no haber sido visitado, se pregunta si la profundidad de dicho nodo es menor o igual que la profundidad, aumentada en una unidad, del nodo seleccionado, es decir, la profundidad del nodo que se acaba de sacar de la cola más uno. A continuación, se explicara cual es el proceso que se debe seguir para cada posible caso a presentarse dada la condición anterior:
+
 -	Si son iguales, se calcula el valor de la suma entre el peso de la arista que conecta el nodo adyacente con el nodo seleccionado y la distancia acumulada desde el origen al nodo seleccionado. Luego se compara si dicha suma posee un valor menor a la distancia desde el origen asociada al nodo adyacente, la cual en un primer caso puede tener valor infinito. 
 
 •	Si dicho valor es menor, entonces se actualiza la profundidad, la distancia asociada y el parentesco correspondiente al nodo adyacente en los arreglos respectivos. La actualización se realiza de tal forma que en el camino que se pretende formar, el nodo seleccionado debe ser padre del nodo adyacente. Además, se agrega el nuevo nodo descubierto a la primera cola de prioridad con su distancia acumulada respectiva. Asimismo, también se agrega dicho nodo a la segunda cola de prioridad, la cual ordena por profundidad, con su profundidad respectiva.
@@ -80,6 +94,8 @@ Paso 3: En este paso, se procede con el análisis del nodo seleccionado. Para el
 -	Si es mayor, se procede a analizar el siguiente nodo adyacente, sin realizar ninguna operación adicional.
 
 El código asociado a este paso se muestra a continuación.
+
+```python
 for wv in G[u]:
                 numero_iteraciones[0] = numero_iteraciones[0] + 1
                 if wv != None:
@@ -99,14 +115,22 @@ for wv in G[u]:
                             prof[v] = 1 + prof[u]
                             hq.heappush(profus, (n-prof[v], v))
                             hq.heappush(q, (f, v))
-Paso 4:
+```
+
+#### Paso 4:
+
 Los pasos 2 y 3 se realizan hasta que la primera cola de prioridad, la cual ordena de acuerdo a distancia, desde el origen, asociada a cada nodo, quede completamente vacía. Esto se implementa agregando una estructura repetitiva “while”, con la condición de que realice las operaciones propuestas en los pasos anteriores hasta que la cola se quede vacía. Una vez vaciada la cola, se procede con el siguiente paso.
-Paso 5: 
+
+#### Paso 5: 
+
 Se procede a seleccionar el elemento más prioritario de la segunda cola de prioridad, en la cual los nodos con la mayor profundidad son los que poseen mayor prioridad. Debido a la naturaleza de esta cola, se obtiene fácilmente el nodo recorrido con la mayor profundidad. Luego de esto, se procede a revisar si existe alguna arista que conecte directamente el nodo obtenido con el nodo de origen. Llegados a este punto, se pasara a explicar los procedimientos a seguir para cada posible resultado de la revisión anterior:
+
 -	 Si existe dicha arista, se procede a realizar la conexión respectiva. De esta manera, se construye el camino solución partiendo desde el nodo de origen hasta el nodo más profundo obtenido, para luego volver al nodo de origen. 
 
 -	 De no existir dicha arista, se procede a construir el camino de regreso haciendo uso del algoritmo de Dijkstra. No obstante, esta vez no es un Dijkstra modificado, sino el clásico. El algoritmo se ejecuta estableciendo como nodo de destino al nodo de origen. En ese sentido, se encuentra el camino más corto de regreso al nodo de origen. En consecuencia, se construye el camino solución partiendo del nodo de origen hasta el nada más profundo alcanzable, para luego regresar al nodo de origen utilizando la ruta más corta. 
 Como se puede apreciar, en cualquiera de los dos casos propuestos anteriormente se termina volviendo al nodo de origen. Por lo tanto, se termina construyendo una posible solución al problema del vendedor viajero. Dicha solución parte y vuelve al nodo de origen. No obstante, no hay seguridad de que recorra todos los nodos del grafo. Asimismo, para el segundo caso, es muy probable que en el camino de regreso al nodo de origen, se vuelvan a visitar varios nodos previamente visitados. Por ello, tampoco hay seguridad de que se visita cada nodo (lugar) una sola vez en la solución dada. El código correspondiente a esta parte del algoritmo se muestra a continuación:
+
+```python
 _,ciudad_final = hq.heappop(profus)
     visit = [False]*n
     weight = [math.inf]*n
@@ -137,10 +161,16 @@ _,ciudad_final = hq.heappop(profus)
                         hq.heappush(queue, (f, v))
                         
     return path, pathi, ciudad_final
-¿Qué tan bueno es el algoritmo y que tanto se acerca a solucionar el problema?
+```
+### ¿Qué tan bueno es el algoritmo y que tanto se acerca a solucionar el problema?
+
 Sustentación: Al agregar una nueva estructura que defina la profundidad de cada vértice del grafo, el algoritmo de Dijkstra modificado logra realizar un recorrido más profundo atreves de sus nodos. Esto se logra, porque se prioriza la profundidad de los nodos sobre la distancia para llegar a ellos. Por esta razón, cuando se analizan los nodos adyacentes para agregarlos a la cola, se revisa primero si la profundidad de dicho nodo adyacente es menor a la profundidad que podría adquirir si es elegido como hijo del último nodo visitado. De ser así, sin importar que la distancia acumulada desde el origen hasta dicho nodo adyacente aumente, se registra dicho nodo como hijo del último nodo sacado de la cola, aumentando la profundidad del camino (solución) por construir. Sin embargo, el orden en el que los nodos son visitados aun es con respecto a su distancia al nodo de origen, es decir, la cola de prioridad principal no pierde su utilidad. Por ello, la variación propuesta solo afecta al momento de seleccionar que nodos se agregan a la primera cola de prioridad. En efecto, se debe de tener en cuenta que cuando se agrega un nuevo nodo a la cola de prioridad, también se ve afectado la profundidad, el parentesco, y la distancia acumulada de dicho nodo. Por ende, cuando se visite dicho nodo y se evalúe la visita de sus nodos adyacentes, la profundidad de sus nodos adyacentes solo será mayor. Esto es posible, porque se prioriza la profundidad de los nodos sobre la distancia para llegar a ellos cada vez que se evalúan los nodos adyacentes. En ese sentido, se termina definiendo caminos más profundos a través del grafo para llegar a todos los nodos del mismo de los que se definirían si se usara un Dijkstra clásico. El algoritmo propuesto selecciona el camino recorrido más profundo de todos los demás, es decir, el camino que visita mayor cantidad de nodos. Luego de esto se trata de construir un ciclo que incluya todos los vértices de ese camino. Para esto, se selecciona el último vértice visitado de ese camino, el más profundo, para tratar de conectarlo con el nodo de origen. Dependiendo del grafo, esto se realiza a través de una única arista de manera óptima o  construyendo el camino más corto posible de regreso al nodo de origen. Cabe mencionar que dicho camino se construye aplicando el Dijkstra clásico. Como se puede apreciar, este algoritmo no garantiza que se visiten todos los nodos (lugares) del grafo, ni tampoco que se visite cada nodo una sola vez. Aun así, brinda una solución parcial en un tiempo significativamente corto. La complejidad de este algoritmo se analizara en la siguiente parte. 
-Mejoras adicionales del algoritmo
+
+### Mejoras adicionales del algoritmo
+
 Cuando se realiza la ejecución del algoritmo propuesto basado en Dijkstra, en el arreglo de parentescos se detallan muchos nodos que son hijos de algunos nodos que participan (son visitados) en el camino (solución) encontrado. No obstante, estos nodos no participan en el camino que se propone como solución, ya que si bien es fácil desviarse del camino (solución) a través de ellos, no hay posibilidad de volver. Por este motivo, una mejora aplicable es agregar dichos nodos al camino. El propósito de hacer esto es aumentar el número de nodos recorridos en el camino. Para ello, se crea una ruta en la solución que permita volver de dichos nodos al camino. Dicha ruta solo se comprende de una arista, y es aquella que permite ir desde dichos nodos hasta su respectivo padre, el cual si pertenece al camino propuesto. Lo anterior se realiza para todos los nodos que cumplan con las características correspondientes. A continuación se presenta el código, en el cual se realizan las operaciones especificadas:
+
+```python
 path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
     camino = []
     if (pathi == [-1]*len(G)):
@@ -165,74 +195,96 @@ path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
                     camino = caminAux1 + caminAux2
                     break
                 cou = cou + 1
+ ```
+# Analisis de Complejidada Algoritmica
 
+## Análisis de la Complejidad del algoritmo basado en Dijkstra
 
-Análisis de la Complejidad del algoritmo basado en Dijkstra
 En esta parte, se procederá a realizar el análisis respectivo del algoritmo propuesto, el cual está basado en Dijkstra. Sin embargo, antes es importante realizar el análisis respectivo del algoritmo de Dijkstra. 
-Complejidad del Algoritmo de Dijkstra:
+
+### Complejidad del Algoritmo de Dijkstra:
+
 En esta parte, se procederá a realizar el análisis respectivo del algoritmo basado en Dijkstra. Es importante reconocer que el algoritmo de Dijkstra es considerado una especialización de la búsqueda de costo uniforme (“Algoritmo de Dijkstra”, s.f). Asimismo, la búsqueda de costo uniforme se basa en el algoritmo de BFS (Búsqueda en anchura). Con la representación de lista de adyacencia del grafo, la cual es la representación usada para este proyecto, la complejidad asociada a recorrer todos los nodos del grafo, en el algoritmo de Dijkstra, está dada por la siguiente expresión:
-O(|V| + |E|) 
-|V| = número de vértices (nodos) del grafo.
-|E| = número de aristas del grafo. 
+
+                                                  Notación Big O: O(|V| + |E|) 
+                                                  
+                                           |V| = número de vértices (nodos) del grafo.
+                                           |E| = número de aristas del grafo. 
+      
 La mencionado anteriormente es correcto, porque cada nodo es visitado una vez y su lista de adyacencia es recorrida una vez también (“Dijkstra’s Algorithm for Adjacency List Representation”, s.f). Además, se utiliza una cola de prioridad para determinar el nodo más cercano del conjunto de vértices (nodos) aun no visitados. En ese sentido, la complejidad de cada operación de agregación y expulsión de cada nodo de dicha cola de prioridad corresponde a O(Log(|V|)) (“Dijkstra’s Algorithm for Adjacency List Representation”, s.f). Incluso, es factible considerar que por cada iteración del algoritmo de Dijkstra, analizando el peor caso, se realiza una operación de agregación y/o eliminación de un nodo de la cola de prioridad. Lo dicho anteriormente, sucede porque cada nodo visitado es expulsado de la cola de prioridad antes de ser visitado, y asimismo, cuando se recorre la lista de adyacencia de cada nodo, en el peor de los casos, por cada iteración se realizara una operación de agregación de un nodo a la cola de prioridad (“Dijkstra’s Algorithm for Adjacency List Representation”, s.f). Por ello, de acuerdo a lo dicho por Alarcón (2013), la complejidad del algoritmo de Dijkstra, utilizando cola de prioridad, está dada por la expresión que se muestra a continuación: 
-O((|V|+|E|) Log(|V|))
-|V| = número de vértices (nodos) del grafo.
-|E| = número de aristas del grafo. 
-Análisis de la Complejidad del algoritmo propuesto:
+
+                                                   Notación Big O: O((|V|+|E|) Log(|V|))
+                                                   
+                                            |V| = número de vértices (nodos) del grafo.
+                                            |E| = número de aristas del grafo. 
+
+### Análisis de la Complejidad del algoritmo propuesto (basado en Dijkstra):
+
 Para determinar la complejidad de este algoritmo, se realizara a través del análisis del mismo, realizando el conteo de cada iteración respectiva. A continuación, se muestra el código del algoritmo propuesto basado en Dijkstra con análisis de tiempo respectivo por cada instrucción: 
-    n = len(G).........................................................................tiempo: 1
-    dist = [math.inf]*n…………………………………...tiempo: n
-    path = [-1]*n………………………………………... tiempo: n
-    prof = [0]*n………………………………………….tiempo: n
-    visited = [False]*n……………………………………tiempo: n
-    q = []………………………………………………….tiempo: 1
-    profus = []…………………………………………… tiempo: 1
-    hq.heappush(q, (0, s))…………………………………tiempo: 1
-    dist[s] = 0……………………………………………..tiempo: 2
-    while len(q) > 0:……………………………………… tiempo: n
-        g, u = hq.heappop(q)………………………………...tiempo: Log(|q|)
-        if not visited[u]:……………………………………..tiempo: 2
-            visited[u] = True………………………………… tiempo: 2
-            for wv in G[u]:……………………………………tiempo: número de nodos adyacentes a u.
-                if wv != None: …………………………………tiempo: 1
-                    w,v = wv …………………………………tiempo: 1
-                    f = g + w…………………………………tiempo: 2
-                    if not visited[v]: …………………………………tiempo: 2
-                        if (prof[u] + 1 == prof[v]): …………………………………tiempo: 4
-                            if f < dist[v]: …………………………………tiempo: 2
-                                dist[v] = f…………………………………tiempo: 2
-                                path[v] = u…………………………………tiempo: 2
-                                prof[v] = 1 + prof[u] …………………………………tiempo: 4
-                                hq.heappush(profus, (n-prof[v], v))…………tiempo: Log(|profus|)
-                                hq.heappush(q, (f, v))…………………………...tiempo: Log(|q|)
-                        elif(prof[u] + 1 > prof[v]):……………………….tiempo: 4
-                            dist[v] = f…………………………………….tiempo: 2
-                            path[v] = u…………………………………tiempo: 2
-                            prof[v] = 1 + prof[u]…………………………tiempo: 4
-                            hq.heappush(profus, (n-prof[v], v)) ))…………tiempo: Log(|profus|)
-                           hq.heappush(q, (f, v))…………………………...tiempo: Log(|q|)
+
+```python
+    n = len(G)  #.........................................................................tiempo: 1
+    dist = [math.inf]*n  #…………………………………...tiempo: n
+    path = [-1]*n #………………………………………... tiempo: n
+    prof = [0]*n #………………………………………….tiempo: n
+    visited = [False]*n #……………………………………tiempo: n
+    q = [] #………………………………………………….tiempo: 1
+    profus = [] #…………………………………………… tiempo: 1
+    hq.heappush(q, (0, s)) #…………………………………tiempo: 1
+    dist[s] = 0 #……………………………………………..tiempo: 2
+    while len(q) > 0: #……………………………………… tiempo: n
+        g, u = hq.heappop(q) #………………………………...tiempo: Log(|q|)
+        if not visited[u]: #……………………………………..tiempo: 2
+            visited[u] = True #………………………………… tiempo: 2
+            for wv in G[u]: #……………………………………tiempo: número de nodos adyacentes a u.
+                if wv != None: #…………………………………tiempo: 1
+                    w,v = wv #…………………………………tiempo: 1
+                    f = g + w #…………………………………tiempo: 2
+                    if not visited[v]: #…………………………………tiempo: 2
+                        if (prof[u] + 1 == prof[v]): #…………………………………tiempo: 4
+                            if f < dist[v]: #…………………………………tiempo: 2
+                                dist[v] = f #…………………………………tiempo: 2
+                                path[v] = u #…………………………………tiempo: 2
+                                prof[v] = 1 + prof[u] #…………………………………tiempo: 4
+                                hq.heappush(profus, (n-prof[v], v)) #…………tiempo: Log(|profus|)
+                                hq.heappush(q, (f, v)) #…………………………...tiempo: Log(|q|)
+                        elif(prof[u] + 1 > prof[v]): #……………………….tiempo: 4
+                            dist[v] = f #…………………………………….tiempo: 2
+                            path[v] = u #…………………………………tiempo: 2
+                            prof[v] = 1 + prof[u] #…………………………tiempo: 4
+                            hq.heappush(profus, (n-prof[v], v)) )) #…………tiempo: Log(|profus|)
+                           hq.heappush(q, (f, v)) #…………………………...tiempo: Log(|q|)
+```
 
 Antes de proceder con el análisis matemático, se debe especificar que la repetitiva “while” del código anterior puede llegar a realizar más iteraciones de las especificadas. Es decir, no necesariamente el número de iteraciones coincide con n (número de nodos). Sin embargo, la segunda repetitiva, es decir, el “for” que se encuentra dentro de dicho “while” solo se va a ejecutar n veces. Esto sucede, porque si se analiza bien el código, se puede observar que en cada iteración, se verifica que el nodo a analizar dentro del “while” no haya sido visitado, y de no estarlo, pues se le marca como visitado, inmediatamente, en el arreglo “visited”. De esta manera, el análisis de los nodos adyacentes a cada vértice (nodo) solo se realiza una sola vez. Por esta razón, casi todo el código que está dentro del “while” solo se ejecuta n veces. En ese sentido, por motivos de cálculo y simplificación, se considerara que dicha repetitiva “while” solo realiza n llamadas.
+
 Ahora bien, si realizamos la suma respectiva de los tiempos determinados anteriormente, de acuerdo a las reglas que se deben de tener en cuenta para el análisis de este tipo de algoritmos, se obtiene lo siguiente:
-6+4n+n*(Log(|q|)+4+|número de nodos adyacentes a u|*(20+Log(|profus|)+Log(|q|)))
--	Excluyendo los valores constantes y aplicando propiedad distributiva:
-4n+n*(Log(|q|)) + n*|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|))
-4n + n*(Log(|q|)) + n*|número de nodos adyacentes a u|*(Log(|q|))+ n*|número de nodos adyacentes a u|*(Log(|profus|) 
-4n + n*(Log(|q|))*(1+|número de nodos adyacentes a u|) + n*|número de nodos adyacentes a u|*(Log(|profus|)
 
-
-
--	Excluyendo nuevamente los valores constantes:
-4n + n*(Log(|q|))*(|número de nodos adyacentes a u|) + n*|número de nodos adyacentes a u|*(Log(|profus|)
-4n + n*|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|))
-n*(4+|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|)))
--	Excluyendo una vez más los valores constantes:
-n*|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|))
-n: número de nodos del grafo
-u: cualquier vértice perteneciente al grafo
+              6+4n+n*(Log(|q|)+4+|número de nodos adyacentes a u|*(20+Log(|profus|)+Log(|q|)))
+                      
+       Excluyendo los valores constantes y aplicando propiedad distributiva:
+                  
+              4n+n*(Log(|q|)) + n*|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|))
+              4n + n*(Log(|q|)) + n*|número de nodos adyacentes a u|*(Log(|q|))+ n*|número de nodos adyacentes a u|*(Log(|profus|) 
+              4n + n*(Log(|q|))*(1+|número de nodos adyacentes a u|) + n*|número de nodos adyacentes a u|*(Log(|profus|)
+            
+       Excluyendo nuevamente los valores constantes:
+                  
+              4n + n*(Log(|q|))*(|número de nodos adyacentes a u|) + n*|número de nodos adyacentes a u|*(Log(|profus|)
+              4n + n*|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|))
+              n*(4+|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|)))
+              
+       Excluyendo una vez más los valores constantes:
+       
+              n*|número de nodos adyacentes a u|*(Log(|profus|)+Log(|q|))
+              
+              n: número de nodos del grafo
+              u: cualquier vértice perteneciente al grafo
+              
 Llegados a este punto, se debe reconocer que la expresión “n*|número de nodos adyacentes a u|” coincide con la suma entre la cantidad de nodos y el número de aristas. A continuación se demostrara lo propuesto anteriormente con un ejemplo:
  
 Supongamos que se tiene el grafo no dirigido anterior, son 4 vértices, por lo que la expresión sería “4*|número de nodos adyacentes a u|”. Son 4 aristas, entonces, después del análisis, se debe obtener que son 8 iteraciones en total para la expresión “4*|número de nodos adyacentes a u|” dado este grafo. 
+
 1 iteración (u=1)………... |número de nodos adyacentes a u| = 2
 2 iteración (u=2)………... |número de nodos adyacentes a u| = 3
 3 iteración (u=3)………... |número de nodos adyacentes a u| = 2
