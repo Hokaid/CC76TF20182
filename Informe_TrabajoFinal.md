@@ -315,31 +315,38 @@ Algo similar sucede con la cola |profus|, solo que para este caso, en ninguna pa
 
                                                 (n+|a|)*(Log(n+|a|)+Log(n))
                                                 
+                             Aplicando la propiedad de suma de logaritmos:
+                             
+                                                (n+|a|)*(Log((n+|a|)*n))
+                                                
                                                 n: número de nodos
                                                 |a|: cantidad de aristas del grafo
                                                 
 Continuando con el asunto, para complementar lo propuesto hasta ahora, se procederá a analizar la segunda parte del algoritmo. En esta segunda parte, a partir de la cola de prioridad “profus”, se determina el nodo más profundo recorrido la primera parte. Luego de ello, se verifica si existe alguna arista que conecte directamente dicho nodo seleccionado con el nodo de origen. De existir dicha arista, como se explicó en la parte teórica, se realiza la conexión respectiva y se retorna el camino (solución) encontrado. Para este primer caso, se debe tener en cuenta que el tiempo de ejecución para encontrar dicha arista y realizar la conexión es despreciable. Por esta razón, para este caso, la complejidad del algoritmo en notación Big O coincidiría con la última expresión matemática dada:
 
-                                           Notación Big O: O((n+|a|)*(Log(n+|a|)+Log(n)))
+                                           Notación Big O: O((n+|a|)*(Log((n+|a|)*n)))
                                            
                                            n: número de nodos
                                            |a|: cantidad de aristas del grafo
                                            
 No obstante, es pertinente analizar el peor caso posible. Esto se da cuando no existe la arista que conecte directamente el nodo más profundo recorrido con el nodo de origen. Para este segundo caso, se intentara buscar el camino más corto para volver al nodo de origen usando el algoritmo clásico de Dijkstra, sin ninguna modificación. En ese sentido, se sumara a la expresión matemática determina la complejidad del algoritmo de Dijkstra:
 
-                           ((n+|a|)*(Log(n+|a|)+Log(n)))+ ((n+|a|)*Log(n))
+                           (n+|a|)*(Log((n+|a|)*n)) + ((n+|a|)*Log(n))
+                           (n+|a|)*(Log(n+|a|)+Log(n)) + ((n+|a|)*Log(n))
                            
             Realizando la suma respectiva, se obtiene:
                            
-                           2*((n+|a|)*Log(n))+ ((n+|a|)* Log(n+|a|))
+                           2*((n+|a|)*Log(n))+ ((n+|a|)*Log(n+|a|))
+                           (n+|a|)*(2*Log(n) + Log(n+|a|))
                            
             Simplificando los valores constantes, de acuerdo a la notación Big O:
             
-                           ((n+|a|)*(Log(n+|a|)+Log(n)))
+                           (n+|a|)*(Log(n+|a|)+Log(n))
+                           (n+|a|)*(Log((n+|a|)*n))
                            
 Por lo tanto, la complejidad para este caso, en notación Big O, será idéntica a como se determinó para el primer caso:
 
-                                 Notación Big O: O((n+|a|)*(Log(n+|a|)+Log(n)))
+                                 Notación Big O: O((n+|a|)*(Log((n+|a|)*n)))
 
 La representación dada anteriormente representa la complejidad, en notación Big O, del algoritmo propuesto basado en Dijkstra.
 
