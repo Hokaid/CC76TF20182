@@ -86,7 +86,7 @@ En este paso, se procede con el análisis del nodo seleccionado. Para ello, se c
 
 1. Si dicho valor es menor, entonces se actualiza la profundidad, la distancia asociada y el parentesco correspondiente al nodo adyacente en los arreglos respectivos. La actualización se realiza de tal forma que en el camino que se pretende formar, el nodo seleccionado debe ser padre del nodo adyacente. Además, se agrega el nuevo nodo descubierto a la primera cola de prioridad con su distancia acumulada respectiva. Asimismo, también se agrega dicho nodo a la segunda cola de prioridad, la cual ordena por profundidad, con su profundidad respectiva.⋅⋅
 
-2. De ser mayor o igual dicha distancia a la suma calculada, entonces no se realiza ninguna operación.⋅⋅
+2. De ser la suma calculada mayor o igual a dicha distancia, entonces no se realiza ninguna operación.⋅⋅
 
 -	Si es menor, entonces se actualiza la profundidad del nodo adyacente, aumentándola en una unidad. Se establece como padre del nodo adyacente al nodo seleccionado. Asimismo, se actualiza la distancia acumulada desde el origen hasta dicho nodo. Las tres operaciones anteriores se realizan en los arreglos respectivos. Igualmente, se debe agregar este nodo adyacente a la primera cola de prioridad, la cual se ordena por pesos acumulados. Por su parte, también es importante agrega dicho nodo a la segunda cola de prioridad con su profundidad respectiva
 
