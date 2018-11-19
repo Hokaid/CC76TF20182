@@ -609,7 +609,7 @@ Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con
 
 - Con el grafo de 171 capitales provinciales, tarda un tiempo despreciable inferior a 1 segundo y se registran 885 iteraciones.
 
-- Con el grafo de 1678 capitales distritales, tarda un tiempo despreciable inferior a 1 segundo y se registran 5089 iteraciones.
+- Con el grafo de 1678 capitales distritales, tarda un tiempo despreciable inferior a 1 segundo y se registran 3768 iteraciones.
 
 - Con el grafo de 75512 centros educativos, tarda 1.03 segundos aproximadamente y se registran 91141 iteraciones. 
 
