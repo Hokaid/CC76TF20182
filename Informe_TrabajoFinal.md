@@ -198,7 +198,19 @@ path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
  ```
  
  ## Marco Teórico del algoritmo basado en Greedy:
- Hacer lo Tuyo Javier
+ ```python
+ def Greedy(Grafo, NodosVisitados):
+
+    MenorPeso = 10000000000
+    N = None
+    
+    for Peso, Nodo in Grafo:
+        if Peso < MenorPeso and not NodosVisitados[Nodo]:
+            MenorPeso = Peso
+            N = Nodo
+
+    return MenorPeso, N
+```
  
 # Analisis de Complejidada Algoritmica
 
