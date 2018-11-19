@@ -282,7 +282,71 @@ cambiar por:
 ```python
  u, v = Greedy(Nodos, NodosVisitadosAux)
 ```
+#### Paso 3: 
+Verificar si ya se recorrieron todos los nodos. De ser así, marcar al 'NodoInicial' como no visitado para poder completar el ciclo. Al finalizar este paso, la parte recursiva del algoritmo tendrá una condición de parada, con lo cual podrá dejar de ejecutar el algoritmo y dar la repuesta requerida.
 
+```python
+ NodosVisitadosAux[NodoInicial] = DeterminarNodosRecorridos(Grafo, NodosVisitadosAux)
+```
+
+De esta forma se solucionara la dificultad planteada, ya que cada vez que no se incluyan los todos los nodos, el algoritmo volverá en la recursividad para probar con otro nodo, hasta que haya un camino que satisfaga la condición.
+
+El algoritmo quedará de la siguiente forma:
+```python
+ def Greedy(Grafo, NodosVisitados):
+
+    MenorPeso = 10000000000
+    N = None
+    
+    for Peso, Nodo in Grafo:
+        if Peso < MenorPeso and not NodosVisitados[Nodo]:
+            MenorPeso = Peso
+            N = Nodo
+
+    return MenorPeso, N
+
+
+def BackTraking(Grafo, NroNodos, NodoInicial, Nodo, NodosVisitados, Profundidad):
+    # -- Crear copia de nodos visitidos
+    NodosVisitadosAux = copy.copy(NodosVisitados)
+
+    # -- Marcar Nodo de proceso como visitado
+    NodosVisitadosAux[Nodo] = True
+  
+    # -- Iniciar proceso de recorrido de nodos
+    Nodos = Grafo[Nodo]    
+    # -- Crear un diccionario para llevar el control de nodos recorridos    
+    MenorPeso = math.inf
+    MenorCamino = []
+    MenorNodo = []
+
+    # -- Determinar el vecino mas cercano al 'Nodo' y su respectivo peso
+    u, v = Greedy(Nodos, NodosVisitadosAux)
+    print(v)
+
+    # -- Verificar si ya se recorrieron todos los nodos. De ser así, marcar al 'NodoInicial' como no visitado para poder completar el ciclo
+    NodosVisitadosAux[NodoInicial] = DeterminarNodosRecorridos(Grafo, NodosVisitadosAux)
+
+    # -- Verificar si ya se alcanzó el nodo inicial (Posible solucion)
+    if (NodoInicial == v):
+            if (Profundidad == NroNodos-1):
+                return u, [v]
+    # -- si no se alcanzó una solución, procesar Nodo  
+    else:
+        if not NodosVisitadosAux[v]:
+            Peso, NodosCamino = BackTraking(Grafo, NroNodos, NodoInicial, v, NodosVisitadosAux, Profundidad + 1)
+            if (Peso >= 0) and (Peso + u < MenorPeso):
+                MenorCamino = [v] + NodosCamino;
+                MenorPeso = u + Peso
+                MenorNodo = [u, v]
+   
+    # -- Si encontró un menor camino, agregar a NodosCamino el menor camino
+    if len(MenorCamino) > 0:
+        return MenorPeso , MenorCamino
+    else:
+        return -1, []
+
+```
  
 # Analisis de Complejidada Algoritmica
 
