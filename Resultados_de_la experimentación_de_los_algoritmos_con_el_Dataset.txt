@@ -1,0 +1,53 @@
+Experimentación de los algoritmos.
+
+Algoritmo basado en Dijkstra:
+
+Resultados:
+
+- Con el grafo de 25 capitales regionales,
+tarda un tiempo despreciable inferior a 1 segundo 
+y se registran 230 iteraciones.
+
+- Con el grafo de 171 capitales provinciales,
+tarda un tiempo despreciable inferior a 1 segundo
+y se registran 1384 iteraciones.
+
+- Con el grafo de 1678 capitales distritales,
+tarda un tiempo despreciable inferior a 1 segundo
+y se registran 17607 iteraciones.
+
+- Con el grafo de 75512 centros educativos, 
+tarda 2.65 segundos aproximadamente y se 
+registran 611390 iteraciones.
+
+- Con el grafo de 145225 centros poblados 
+(dataset completo), tarda 5.11 segundos 
+aproximadamente y se registran 1308059 iteraciones.
+
+Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con data de gran tamaño.
+
+Algoritmo basado en la estrategia Greedy:
+
+Resultados:
+
+- Con el grafo de 25 capitales regionales,
+tarda un tiempo despreciable inferior a 1 segundo 
+y se registran 180 iteraciones.
+
+- Con el grafo de 171 capitales provinciales,
+tarda un tiempo despreciable inferior a 1 segundo
+y se registran 885 iteraciones.
+
+- Con el grafo de 1678 capitales distritales,
+tarda un tiempo despreciable inferior a 1 segundo
+y se registran 3768 iteraciones.
+
+- Con el grafo de 75512 centros educativos, 
+tarda 1.03 segundos aproximadamente y se 
+registran 91141 iteraciones. 
+
+- Con el grafo de 145225 centros poblados 
+(dataset completo), tarda 2.49 segundos 
+aproximadamente y se registran 181993 iteraciones.
+
+Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con data de gran tamaño.

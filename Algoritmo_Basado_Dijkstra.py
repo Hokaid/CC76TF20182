@@ -133,7 +133,10 @@ def Ejecutar_Alg_Basado_Dikjstra_Mostrar_Resultados(G,s,ciudad,peso,solup,iters)
     print()
     return camino
 
-
+G = LeeGrafo("Grafo_25_Capitales_Regionales.txt")
+numero_iteraciones = [0]
+path, pathi, ciudad_final = dikjstra_modificado(G, 0, numero_iteraciones)
+print(numero_iteraciones)
 
 
 
