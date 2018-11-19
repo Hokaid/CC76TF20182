@@ -646,6 +646,7 @@ H. Se priorizo en la visualización de datos relevantes en la demostración del 
 - Espinoza, D. (24 de julio de 2016). EL Problema del Vendedor Viajero (TSP) y
 Programación Entera (IP) [Presentación de Power Point]. Universidad de Chile. Recuperado de http://www.dii.uchile.cl/~daespino/PApers/TSP_and_IP_chile_050820.pdf 
 
+- Universidad de granada. (2017). Algoritmos Algoritmos Greedy Análisis y Diseño de Algoritmos. 12/11/2018, de Universidad de granada Sitio web: http://elvex.ugr.es/decsai/algorithms/slides/4%20greedy.pdf
 
 
 
