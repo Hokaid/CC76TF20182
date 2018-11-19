@@ -577,7 +577,9 @@ El tiempo que se acaba de hayar es del algoritmo BackTraking. El algoritmo GREED
 
                                                    Big(o): O(n)
 
-Por lo tanto no es tomado en cuenta para determinar la complejidad.
+Como el algoritmo GREEDY se ejecuta dentro del algoritmo de BackTraking, la complejidad total será:
+						
+						Big(o): O(2^(n - 1) * n)
                                                    
 En concecuencia, concluimos que el algoritmo basado en GREEDY y BackTraking es inmanejable, ya que la complejidad big(o) del algoritmo es de tipo potencial.           
 
