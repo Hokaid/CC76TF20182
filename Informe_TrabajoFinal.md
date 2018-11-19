@@ -552,16 +552,16 @@ def BackTraking(Grafo, NroNodos, NodoInicial, Nodo, NodosVisitados, Profundidad)
 
 Al analizar el algoritmo, se evidencia los valores de ‘a’ y ‘k’. Al remplazar los valores encontrados en la fórmula se obtendrá la siguiente igualdad. Hay que precisar que 'a' es el numero de llamadas recursivas que entra en el 'for', o sea se basa en el numero de nodos.
 
-                                                   T(n) = 2*T(n-1) + O(1)
+                                                 T(n) = 2*T(n-1) + O(1)
                                                             
 Cuando seguimos el recorrido de la recursividad en el algoritmo vemos que la igualdad cambiara, ya que para cada llamada el T(n-1) ira aumentado hasta llegar la condición de parada. Es por ello que la identidad, definida anteriormente, permutara en cada llamada recursiva de la siguiente forma:    
 
 
-                                      Primera entrada recursiva (1) T(n) = 2*T(n-1)+1
-                                      Segunda entrada recursiva (2) T(n) = 2*(2-1*T(n-2)+1)+1
-                                      Tercera entrada recursiva (3) T(n) = 2*(2-1*(2-2*T(n-3)+1)+1)+1
-                                      Cuarta entrada recursiva (4) T(n) = 2*(2-1*(2n*(2-3*T(n-4)+1)+1)+1)+1
-                                      Quinta entrada recursiva (5) T(n) = 2*(2*-1(2*-2(2*-3(2-4*T(n-5)+1)+1)+1)+1)+1
+                                     Primera entrada recursiva (1) T(n) = 2*T(n-1)+1
+                                     Segunda entrada recursiva (2) T(n) = 2*(2-1*T(n-2)+1)+1
+                                     Tercera entrada recursiva (3) T(n) = 2*(2-1*(2-2*T(n-3)+1)+1)+1
+                                     Cuarta entrada recursiva (4) T(n) = 2*(2-1*(2n*(2-3*T(n-4)+1)+1)+1)+1
+                                     Quinta entrada recursiva (5) T(n) = 2*(2*-1(2*-2(2*-3(2-4*T(n-5)+1)+1)+1)+1)+1
 		                                    .	.
 			                        .
 			                        .
@@ -569,12 +569,12 @@ Cuando seguimos el recorrido de la recursividad en el algoritmo vemos que la igu
 La permutación de la identidad toma una forma que asemeja la de una progresión, gracias ello podemos hacer uso de la ‘inducción matemática’ para generalizar la progresión:
                                       
                                            
-                                                (2^i)*T(n-i)+(2^i)-1
+                                                  (2^i)*T(n-i)+(2^i)-1
                                                     
 'n' representa el numero de nodos del algoritmo.                                                  
 Resolviendo por conceptos matematicos nos queda la complejidad final del algoritmo:
                                                    
-                                                     Big(o): O(2^(n - 1))
+                                                   Big(o): O(2^(n - 1))
 
 El tiempo que se acaba de hayar es del algoritmo BackTraking. El algoritmo GREEDY tiene una complejidad de:
 
