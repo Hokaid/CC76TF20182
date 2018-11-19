@@ -600,6 +600,23 @@ La representación dada anteriormente representa la complejidad, en notación Bi
 - Con el grafo de 145225 centros poblados (dataset completo), tarda 5.11 segundos aproximadamente y se registran 1308059 iteraciones.
 
 Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con data de gran tamaño.
+
+## Algoritmo basado en la estrategia Greedy:
+
+### Resultados:
+
+- Con el grafo de 25 capitales regionales, tarda un tiempo despreciable inferior a 1 segundo y se registran 180 iteraciones.
+
+- Con el grafo de 171 capitales provinciales, tarda un tiempo despreciable inferior a 1 segundo y se registran 885 iteraciones.
+
+- Con el grafo de 1678 capitales distritales, tarda un tiempo despreciable inferior a 1 segundo y se registran 5089 iteraciones.
+
+- Con el grafo de 75512 centros educativos, tarda 1.03 segundos aproximadamente y se registran 91141 iteraciones. Se debe resaltarque no logra determinar solución para el problema, ya que se genera un error de recursión. Dicho error se debe a la falta de capacidad
+computacional.
+
+- Con el grafo de 145225 centros poblados (dataset completo), tarda 2.49 segundos aproximadamente y se registran 181993 iteraciones. Se debe resaltar que no logra determinar solución para el problema, ya que se genera un error de recursión. Dicho error se debe a la falta de capacidad computacional.
+
+Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con data de gran tamaño.
  
 # Conclusiones
 En conclusión, se cumplieron los objetivos propuestos satisfactoriamente. Se desarrollo soluciones basadas en el problema dado haciendo uso de herramientas y técnicas (Algoritmos) aprendidas a lo largo del curso. Los algoritmos usados para dicha solución son: El algoritmo de Dijkstra y el algoritmo Greedy relacionaso con backtraking. De la misma forma, se evidencio la aplicación de las competencias generales y específicas, siendo estas las de Razonamiento Cuantitativo y, Planificación y Conducción de Experimentos respectivamente. Esto se ve reflejado en el uso de técnicas matemáticas (Teorema Maestro) para hallar la complejidad de los algoritmos implementados y la exhaustiva investigación de algoritmos que den una solución adecuada al problema planteado. Ademas, es necesario enmarcar que se lograron mejores soluciones generales en comparacion al trabajo parcial, ya que los rangos y los tiempos de solucion son mejores. Para finalizar, el presente trabajo satisface los objetivos planteados. A continuación, se plantarán las conclusiones acorde con los objetivos dados:
