@@ -611,10 +611,9 @@ Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con
 
 - Con el grafo de 1678 capitales distritales, tarda un tiempo despreciable inferior a 1 segundo y se registran 5089 iteraciones.
 
-- Con el grafo de 75512 centros educativos, tarda 1.03 segundos aproximadamente y se registran 91141 iteraciones. Se debe resaltarque no logra determinar solución para el problema, ya que se genera un error de recursión. Dicho error se debe a la falta de capacidad
-computacional.
+- Con el grafo de 75512 centros educativos, tarda 1.03 segundos aproximadamente y se registran 91141 iteraciones. 
 
-- Con el grafo de 145225 centros poblados (dataset completo), tarda 2.49 segundos aproximadamente y se registran 181993 iteraciones. Se debe resaltar que no logra determinar solución para el problema, ya que se genera un error de recursión. Dicho error se debe a la falta de capacidad computacional.
+- Con el grafo de 145225 centros poblados (dataset completo), tarda 2.49 segundos aproximadamente y se registran 181993 iteraciones. 
 
 Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con data de gran tamaño.
  
@@ -646,7 +645,7 @@ H. Se priorizo en la visualización de datos relevantes en la demostración del 
 
 - Espinoza, D. (24 de julio de 2016). EL Problema del Vendedor Viajero (TSP) y
 Programación Entera (IP) [Presentación de Power Point]. Universidad de Chile. Recuperado de http://www.dii.uchile.cl/~daespino/PApers/TSP_and_IP_chile_050820.pdf 
-https://jariasf.wordpress.com/2012/03/19/camino-mas-corto-algoritmo-de-dijkstra/ [Consulta: 15 de Noviembre de 2018]
+
 
 
 
