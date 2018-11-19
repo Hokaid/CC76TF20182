@@ -198,6 +198,10 @@ path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
  ```
  
  ## Marco Teórico del algoritmo basado en Greedy:
+El algoritmo GREEDY es un algoritmo de tipo voraz. Se basa en la lógica de buscar el vecino más cercano al nodo que esta en proceso, teniendo en cuenta que dichi vecino no haya sido visitado.
+
+A continuacion se mostra un ejemplo de este algoritmo:
+
  ```python
  def Greedy(Grafo, NodosVisitados):
 
@@ -211,6 +215,74 @@ path, pathi, ciudad_final = dikjstra_modificado(G,s,numero_iteraciones)
 
     return MenorPeso, N
 ```
+Como se puede apreciar es un algoritmo sencillo de entender y de programar. Ahora bien, al aplicar este algoritmo al problema del vendedor viajero la historia es diferente. Como ya se explicó en la introducción, el objetivo del problema del vendedor viajero es determinar el camino más coto entre un determinado número de nodos, pasando una vez obligatoriamente por cada nodo. La dificultad de aplicar el algoritmo GREEDY a este problema es que no se podrá garantizar que se cumpla tal condición. Al determinar el vecino más próximo al nodo procesado siempre, quedaran nodos que en ninguna de las iteraciones del algoritmo sean escogidos como los vecinos más cercanos, por lo tanto, quedaran excluidos de la solución.
+
+La solución propuesta a esta dificultada es juntar el algoritmo GREEDY con uno de BACKTRAKING. Ver algoritmo en la imagen siguiente.
+
+```python
+def BackTraking(Grafo, NroNodos, NodoInicial, Nodo, NodosVisitados, Profundidad):
+    # -- Crear copia de nodos visitidos
+    NodosVisitadosAux = copy.copy(NodosVisitados)
+
+    # -- Marcar Nodo de proceso como visitado
+    NodosVisitadosAux[Nodo] = True
+
+    # -- Iniciar proceso de recorrido de nodos
+    Nodos = Grafo[Nodo]    
+    # -- Crear un diccionario para llevar el control de nodos recorridos    
+    MenorPeso = math.inf
+    MenorCamino = []
+    MenorNodo = []
+    for u, v in Nodos:
+        # -- Verificar si ya se alcanzó el nodo inicial (Posible solucion)
+        if (NodoInicial == v):
+            if (Profundidad == NroNodos-1):
+                return u, [v]
+        # -- si no se alcanzó una solución, procesar Nodo  
+        else:       
+            if not NodosVisitadosAux[v]:
+                Peso, NodosCamino = BackTraking(Grafo, NroNodos, NodoInicial, v, NodosVisitadosAux, Profundidad + 1)
+                if (Peso >= 0) and (Peso + u < MenorPeso):
+                    MenorCamino = [v] + NodosCamino;
+                    MenorPeso = u + Peso
+                    MenorNodo = [u, v]                
+                
+    # -- Si encontró un menor camino, agregar a NodosCamino el menor camino
+    if len(MenorCamino) > 0:
+        return MenorPeso , MenorCamino
+    else:
+        return -1, []
+```
+
+La forma en la que estos dos algoritmos se deben de juntar estará descrita en los siguientes pasos:
+
+#### Paso 1:
+Implementar una función que determine si el numero de nodos visitados es igual al numero de nodos del grafo, de esta forma se podrá saber si todos los nodos del grafo ya fueron visitados.
+
+```python
+ def Greedy(Grafo, NodosVisitados):
+
+    MenorPeso = 10000000000
+    N = None
+    
+    for Peso, Nodo in Grafo:
+        if Peso < MenorPeso and not NodosVisitados[Nodo]:
+            MenorPeso = Peso
+            N = Nodo
+
+    return MenorPeso, N
+```
+#### Paso 2:
+Cambiar el ‘for’ que recoge el Nodo y el Peso del nodo anterior y que recorre todos los nodos del grafo por el algorito GREEDY que se encarga de determinar el Vecino más cercano, Nodo y Peso.
+
+```python
+ for u, v in Nodos:
+```
+cambiar por:
+```python
+ u, v = Greedy(Nodos, NodosVisitadosAux)
+```
+
  
 # Analisis de Complejidada Algoritmica
 
