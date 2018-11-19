@@ -86,7 +86,7 @@ En este paso, se procede con el análisis del nodo seleccionado. Para ello, se c
 
 1. Si dicho valor es menor, entonces se actualiza la profundidad, la distancia asociada y el parentesco correspondiente al nodo adyacente en los arreglos respectivos. La actualización se realiza de tal forma que en el camino que se pretende formar, el nodo seleccionado debe ser padre del nodo adyacente. Además, se agrega el nuevo nodo descubierto a la primera cola de prioridad con su distancia acumulada respectiva. Asimismo, también se agrega dicho nodo a la segunda cola de prioridad, la cual ordena por profundidad, con su profundidad respectiva.⋅⋅
 
-2. De ser mayor o igual dicha distancia a la suma calculada, entonces no se realiza ninguna operación.⋅⋅
+2. De ser la suma calculada mayor o igual a dicha distancia, entonces no se realiza ninguna operación.⋅⋅
 
 -	Si es menor, entonces se actualiza la profundidad del nodo adyacente, aumentándola en una unidad. Se establece como padre del nodo adyacente al nodo seleccionado. Asimismo, se actualiza la distancia acumulada desde el origen hasta dicho nodo. Las tres operaciones anteriores se realizan en los arreglos respectivos. Igualmente, se debe agregar este nodo adyacente a la primera cola de prioridad, la cual se ordena por pesos acumulados. Por su parte, también es importante agrega dicho nodo a la segunda cola de prioridad con su profundidad respectiva
 
@@ -498,7 +498,124 @@ Por lo tanto, la complejidad para este caso, en notación Big O, será idéntica
 La representación dada anteriormente representa la complejidad, en notación Big O, del algoritmo propuesto basado en Dijkstra.
 
 ## Análisis de la Complejidad del algoritmo basado en Greedy:
- Hacer lo Tuyo Javier, also
+
+Para determinar la complejidad del algoritmo propuesto se hará uso de la siguiente formula, es importante resaltar que la formula propuesta nos ayudara a determinar la complejidad de la parte recursiva de este. 
+
+                                                T(n) = a*T(n-1) + O(n^k)
+                                                
+            a: este valor representa el numero de llamadas recursivas que se van realizar dentro de una llamada de la función.
+            k: este valor determina la complejidad de los procedimientos realizados en la función aparte de las llamadas recursivas.
+
+El resultado de la complejidad del algoritmo se presentará mediante la notación big(o). Esta notación es la más adecuada para satisfacer uno de los objetivos del proyecto, determinar la complejidad de un algoritmo en el peor escenario posible que este pueda presentar. 
+Teniendo en cuenta lo mencionado anteriormente, se mostrará una imagen de la función recursiva del algoritmo. En ella se hallará la complejidad big(o), ya que en dicha función se presenta el núcleo del algoritmo.
+
+```python
+def BackTraking(Grafo, NroNodos, NodoInicial, Nodo, NodosVisitados, Profundidad):
+    # -- Crear copia de nodos visitidos
+    NodosVisitadosAux = copy.copy(NodosVisitados)
+
+    # -- Marcar Nodo de proceso como visitado
+    NodosVisitadosAux[Nodo] = True
+  
+    # -- Iniciar proceso de recorrido de nodos
+    Nodos = Grafo[Nodo]    
+    # -- Crear un diccionario para llevar el control de nodos recorridos    
+    MenorPeso = math.inf
+    MenorCamino = []
+    MenorNodo = []
+
+    # -- Determinar el vecino mas cercano al 'Nodo' y su respectivo peso
+    u, v = Greedy(Nodos, NodosVisitadosAux)
+    # -- Verificar si ya se recorrieron todos los nodos. De ser así, marcar al 'NodoInicial' como no visitado para poder completar el ciclo
+    NodosVisitadosAux[NodoInicial] = DeterminarNodosRecorridos(Grafo, NodosVisitadosAux)
+    
+    # -- Verificar si ya se alcanzó el nodo inicial (Posible solucion)
+    if (NodoInicial == v):
+            if (Profundidad == NroNodos-1):
+                return u, [v]
+    # -- si no se alcanzó una solución, procesar Nodo  
+    else:
+        if not NodosVisitadosAux[v]:# and HayCamino(Grafo[v], NodosVisitadosAux):
+            Peso, NodosCamino = BackTraking(Grafo, NroNodos, NodoInicial, v, NodosVisitadosAux, Profundidad + 1)
+            if (Peso >= 0) and (Peso + u < MenorPeso):
+                MenorCamino = [v] + NodosCamino;
+                MenorPeso = u + Peso
+                MenorNodo = [u, v]
+        
+        
+    # -- Si encontró un menor camino, agregar a NodosCamino el menor camino
+    if len(MenorCamino) > 0:
+        return MenorPeso , MenorCamino
+    else:
+        return -1, []
+```
+
+Al analizar el algoritmo, se evidencia los valores de ‘a’ y ‘k’. Al remplazar los valores encontrados en la fórmula se obtendrá la siguiente igualdad. Hay que precisar que 'a' es el numero de llamadas recursivas que entra en el 'for', o sea se basa en el numero de nodos.
+
+                                                 T(n) = 2*T(n-1) + O(1)
+                                                            
+Cuando seguimos el recorrido de la recursividad en el algoritmo vemos que la igualdad cambiara, ya que para cada llamada el T(n-1) ira aumentado hasta llegar la condición de parada. Es por ello que la identidad, definida anteriormente, permutara en cada llamada recursiva de la siguiente forma:    
+
+
+                             Primera entrada recursiva (1) T(n) = 2*T(n-1)+1
+                             Segunda entrada recursiva (2) T(n) = 2*(2-1*T(n-2)+1)+1
+                             Tercera entrada recursiva (3) T(n) = 2*(2-1*(2-2*T(n-3)+1)+1)+1
+                             Cuarta entrada recursiva (4) T(n) = 2*(2-1*(2n*(2-3*T(n-4)+1)+1)+1)+1
+                             Quinta entrada recursiva (5) T(n) = 2*(2*-1(2*-2(2*-3(2-4*T(n-5)+1)+1)+1)+1)+1
+		                                  
+La permutación de la identidad toma una forma que asemeja la de una progresión, gracias ello podemos hacer uso de la ‘inducción matemática’ para generalizar la progresión:
+                                      
+                                           
+                                                  (2^i)*T(n-i)+(2^i)-1
+                                                    
+'n' representa el numero de nodos del algoritmo.                                                  
+Resolviendo por conceptos matematicos nos queda la complejidad final del algoritmo:
+                                                   
+                                                   Big(o): O(2^(n - 1))
+
+El tiempo que se acaba de hayar es del algoritmo BackTraking. El algoritmo GREEDY tiene una complejidad de:
+
+                                                   Big(o): O(n)
+
+Como el algoritmo GREEDY se ejecuta dentro del algoritmo de BackTraking, la complejidad total será:
+						
+						Big(o): O((2^(n - 1)) * n)
+                                                   
+La representación dada anteriormente representa la complejidad, en notación Big O, del algoritmo propuesto basado en Greedy.          
+
+# Resultados de la experimentación de los algoritmos con el Dataset proporcionado.
+
+## Algoritmo basado en Dijkstra:
+
+### Resultados:
+
+- Con el grafo de 25 capitales regionales, tarda un tiempo despreciable inferior a 1 segundo y se registran 230 iteraciones.
+
+- Con el grafo de 171 capitales provinciales, tarda un tiempo despreciable inferior a 1 segundo y se registran 1384 iteraciones.
+
+- Con el grafo de 1678 capitales distritales, tarda un tiempo despreciable inferior a 1 segundo y se registran 17607 iteraciones.
+
+- Con el grafo de 75512 centros educativos, tarda 2.65 segundos aproximadamente y se registran 611390 iteraciones.
+
+- Con el grafo de 145225 centros poblados (dataset completo), tarda 5.11 segundos aproximadamente y se registran 1308059 iteraciones.
+
+Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con data de gran tamaño.
+
+## Algoritmo basado en la estrategia Greedy:
+
+### Resultados:
+
+- Con el grafo de 25 capitales regionales, tarda un tiempo despreciable inferior a 1 segundo y se registran 180 iteraciones.
+
+- Con el grafo de 171 capitales provinciales, tarda un tiempo despreciable inferior a 1 segundo y se registran 885 iteraciones.
+
+- Con el grafo de 1678 capitales distritales, tarda un tiempo despreciable inferior a 1 segundo y se registran 3768 iteraciones.
+
+- Con el grafo de 75512 centros educativos, tarda 1.03 segundos aproximadamente y se registran 91141 iteraciones. 
+
+- Con el grafo de 145225 centros poblados (dataset completo), tarda 2.49 segundos aproximadamente y se registran 181993 iteraciones. 
+
+Importante: Con lo anterior, el algoritmo muestra ser escalable, y funcionar con data de gran tamaño.
  
 # Conclusiones
 En conclusión, se cumplieron los objetivos propuestos satisfactoriamente. Se desarrollo soluciones basadas en el problema dado haciendo uso de herramientas y técnicas (Algoritmos) aprendidas a lo largo del curso. Los algoritmos usados para dicha solución son: El algoritmo de Dijkstra y el algoritmo Greedy relacionaso con backtraking. De la misma forma, se evidencio la aplicación de las competencias generales y específicas, siendo estas las de Razonamiento Cuantitativo y, Planificación y Conducción de Experimentos respectivamente. Esto se ve reflejado en el uso de técnicas matemáticas (Teorema Maestro) para hallar la complejidad de los algoritmos implementados y la exhaustiva investigación de algoritmos que den una solución adecuada al problema planteado. Ademas, es necesario enmarcar que se lograron mejores soluciones generales en comparacion al trabajo parcial, ya que los rangos y los tiempos de solucion son mejores. Para finalizar, el presente trabajo satisface los objetivos planteados. A continuación, se plantarán las conclusiones acorde con los objetivos dados:
@@ -528,7 +645,7 @@ H. Se priorizo en la visualización de datos relevantes en la demostración del 
 
 - Espinoza, D. (24 de julio de 2016). EL Problema del Vendedor Viajero (TSP) y
 Programación Entera (IP) [Presentación de Power Point]. Universidad de Chile. Recuperado de http://www.dii.uchile.cl/~daespino/PApers/TSP_and_IP_chile_050820.pdf 
-https://jariasf.wordpress.com/2012/03/19/camino-mas-corto-algoritmo-de-dijkstra/ [Consulta: 15 de Noviembre de 2018]
+
 
 
 
