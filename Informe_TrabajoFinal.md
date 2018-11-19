@@ -557,15 +557,12 @@ Al analizar el algoritmo, se evidencia los valores de ‘a’ y ‘k’. Al remp
 Cuando seguimos el recorrido de la recursividad en el algoritmo vemos que la igualdad cambiara, ya que para cada llamada el T(n-1) ira aumentado hasta llegar la condición de parada. Es por ello que la identidad, definida anteriormente, permutara en cada llamada recursiva de la siguiente forma:    
 
 
-                                     Primera entrada recursiva (1) T(n) = 2*T(n-1)+1
-                                     Segunda entrada recursiva (2) T(n) = 2*(2-1*T(n-2)+1)+1
-                                     Tercera entrada recursiva (3) T(n) = 2*(2-1*(2-2*T(n-3)+1)+1)+1
-                                     Cuarta entrada recursiva (4) T(n) = 2*(2-1*(2n*(2-3*T(n-4)+1)+1)+1)+1
-                                     Quinta entrada recursiva (5) T(n) = 2*(2*-1(2*-2(2*-3(2-4*T(n-5)+1)+1)+1)+1)+1
-		                                    .	.
-			                        .
-			                        .
-
+                             Primera entrada recursiva (1) T(n) = 2*T(n-1)+1
+                             Segunda entrada recursiva (2) T(n) = 2*(2-1*T(n-2)+1)+1
+                             Tercera entrada recursiva (3) T(n) = 2*(2-1*(2-2*T(n-3)+1)+1)+1
+                             Cuarta entrada recursiva (4) T(n) = 2*(2-1*(2n*(2-3*T(n-4)+1)+1)+1)+1
+                             Quinta entrada recursiva (5) T(n) = 2*(2*-1(2*-2(2*-3(2-4*T(n-5)+1)+1)+1)+1)+1
+		                                  
 La permutación de la identidad toma una forma que asemeja la de una progresión, gracias ello podemos hacer uso de la ‘inducción matemática’ para generalizar la progresión:
                                       
                                            
