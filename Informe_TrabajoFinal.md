@@ -501,7 +501,22 @@ La representación dada anteriormente representa la complejidad, en notación Bi
  Hacer lo Tuyo Javier, also
  
 # Conclusiones
-Hacer lo tuyo javier, puedes copiar lo del trabajo pasado, pero procura cambiar algunas cosas, mejorarlo y hacer lo mas acorde al TF
+En conclusión, se cumplieron los objetivos propuestos satisfactoriamente. Se desarrollo soluciones basadas en el problema dado haciendo uso de herramientas y técnicas (Algoritmos) aprendidas a lo largo del curso. Los algoritmos usados para dicha solución son: El algoritmo de Dijkstra y el algoritmo Greedy relacionaso con backtraking. De la misma forma, se evidencio la aplicación de las competencias generales y específicas, siendo estas las de Razonamiento Cuantitativo y, Planificación y Conducción de Experimentos respectivamente. Esto se ve reflejado en el uso de técnicas matemáticas (Teorema Maestro) para hallar la complejidad de los algoritmos implementados y la exhaustiva investigación de algoritmos que den una solución adecuada al problema planteado. Ademas, es necesario enmarcar que se lograron mejores soluciones generales en comparacion al trabajo parcial, ya que los rangos y los tiempos de solucion son mejores. Para finalizar, el presente trabajo satisface los objetivos planteados. A continuación, se plantarán las conclusiones acorde con los objetivos dados:
+A. Se realizó un análisis adecuado de los datos del problema, los cuales estaban representados mediante tablas, para llegar a una solución satisfactoria.
+
+B. Se desarrollo soluciónes para el problema usando tecnicas matemáticas.
+
+C. En la investigacion correspondiente se encontro herramientas modernas para derle solución al problema.
+
+D. Todas las tecnicas implementadas para dar solución al problema se basan en algoritmos trabajados en clase.
+
+E. Se Elaboro un marco teorico acorde a la solución del problema
+
+F. Se determino y se explico la complejidad de cada algoritmo de forma detallada
+
+G. Por la misma naturaleza del problema, no se pudo encontrar una solucion optima con los algoritmos vistos en clase
+
+H. Se priorizo en la visualización de datos relevantes en la demostración del problema
 
 # Bibliografía 
 
